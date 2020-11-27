@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: EDU-PAY
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/online_edu?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+server:
+  port: 8005
+swagger2:
+  enable: true
+mybatis-plus:
+  mapper-locations: classpath:com/atguigu/pay/mapper/xml/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+wx:
+  pay:
+    #微信支付id
+    app_id: wx74862e0dfcf69954
+    #商户号
+    mch_id: 1558950191
+    #终端ip地址 服务所在ip地址
+    spbill_create_ip: 127.0.0.1
+    #支付之后回调
+    notify_url: http://guli.shop/api/order/weixinPay/weixinNotify
+    xml_key: T6m9iK73b0kn9g5v426MKfHQH7X8rKwb

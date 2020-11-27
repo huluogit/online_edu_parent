@@ -1,0 +1,57 @@
+spring:
+  #微服务名称
+  application:
+    name: EDU-SERVICE
+    #数据库连接信息
+  datasource:
+    #数据库用户名
+    username: root
+    #数据库密码
+    password: root
+    #数据库连接地址：jdbc:mysql://127.0.0.1:3306
+    #数据库名称:online_edu
+    #数据库时区配置：serverTimezone=GMT%2B8  %2B :浏览器解析为+
+    url: jdbc:mysql://127.0.0.1:3306/online_edu?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    #数据库驱动
+    driver-class-name: com.mysql.jdbc.Driver
+  #json数据格式
+  jackson:
+    #日期格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+    #时区设置
+    time-zone: GMT+8
+    #eureka配置
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8888/eureka/
+#  instance:
+#    appname: EDU-SERVICE
+#    prefer-ip-address: true
+  #nacos配置
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  redis:
+      host: 8.129.231.253
+      port: 6379
+#微服务端口号
+server:
+  port: 8000
+#开启swagger配置
+swagger2:
+  enable: true
+mybatis-plus:
+  #配置mapper映射文件路径
+  mapper-locations: classpath:com/atguigu/edu/mapper/xml/*.xml
+  #日志配置
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #逻辑删除组件配置
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+

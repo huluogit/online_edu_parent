@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.edu.mapper.EduCourseMapper">
+    <select id="getCourseConfirmInfo" resultType="com.atguigu.response.EduCourseConfirmVo">
+        SELECT
+			a.id courseId,
+			a.cover,
+			a.title courseName,
+			a.lesson_num lessonNum,
+			a.price,
+			b.NAME teacherName,
+			c.title parentSubjectName,
+			d.title childSubjectName
+		FROM
+			edu_course a
+			LEFT JOIN edu_teacher b ON a.teacher_id = b.id
+			LEFT JOIN edu_subject c ON a.parent_subject_id = c.id
+			LEFT JOIN edu_subject d ON a.child_subject_id = d.id
+		WHERE
+			a.id = #{courseId}
+    </select>
+    <select id="queryCourseDetailById" resultType="com.atguigu.response.CourseDetailInfo">
+		SELECT
+	a.title,
+	a.price,
+	a.lesson_num,
+	a.cover,
+	a.buy_count AS buyCount,
+	a.view_count AS viewCount,
+	b.description,
+	c.id AS teacherId,
+	c.NAME AS teacherName,
+	c.intro,
+	c.avatar,
+	d.id AS parentSubjectId,
+	d.title AS parentSubject,
+	e.id AS childSubjectId,
+	e.title AS childSubject
+FROM
+	edu_course a
+	LEFT JOIN edu_course_description b ON a.id = b.id
+	LEFT JOIN edu_teacher c ON a.teacher_id = c.id
+	LEFT JOIN edu_subject d ON a.parent_subject_id = d.id
+	LEFT JOIN edu_subject e ON a.child_subject_id = e.id
+WHERE
+	a.id = #{courseId}
+	</select>
+</mapper>

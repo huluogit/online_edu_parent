@@ -1,0 +1,53 @@
+spring:
+  #微服务名称，方便RCP远程调用
+  application:
+    name: EDU-USER
+  #数据库信息配置
+  datasource:
+    #数据库用户名
+    username: root
+    #数据库密码
+    password: root
+    #数据库URL地址
+    url: jdbc:mysql://127.0.0.1:3306/online_edu?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    #数据库的连接信息drive
+    driver-class-name: com.mysql.jdbc.Driver
+  #json数据转换
+  jackson:
+    #日期格式定义
+    date-format: yyyy-MM-dd HH:mm:ss
+    #时区设置
+    time-zone: GMT+8
+  #springcloud的nacos注册中心 默认端口为8848
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+#本微服务的ip地址 8150 用于连接微信客户端
+server:
+  port: 8150
+#开启swagger文档
+swagger2:
+  enable: true
+#扫描mybatis-plus的.xml文件到spring容器中
+mybatis-plus:
+  mapper-locations: classpath:com/atguigu/edu/mapper/xml/*.xml
+  #mybatis-plus的日志文件
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #去、逻辑删除 1为删除 0为未删除
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+#第三方软件 微信登陆
+wx:
+  open:
+    # 微信开放平台 appid
+    app_id: wxed9954c01bb89b47
+    # 微信开放平台 appsecret
+    app_secret: a7482517235173ddb4083788de60b90e
+    # 微信开放平台 重定向url（guli.shop需要在微信开放平台配置）
+    redirect_url: http://guli.shop/api/ucenter/wx/callback
+
+
